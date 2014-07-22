@@ -6,14 +6,16 @@
     android:orientation="vertical"
     android:gravity="center_vertical" >
 
-    <ToggleButton android:id="@+id/settings_sound_toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textOn="Sound On"
-        android:textOff="Sound Off"
+	<ImageButton android:id="@+id/settings_sound_toggle"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:contentDescription="@string/sound_toggle_button"
+	    android:src="@drawable/sound_on"
         android:onClick="soundToggleClick"
-        android:layout_marginBottom="20dp" />
+        android:padding="10sp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent" />
 
     <Button android:id="@+id/settings_highscore_reset"
         android:layout_width="wrap_content"

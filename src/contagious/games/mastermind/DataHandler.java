@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
 
 public class DataHandler {
+
 	public static abstract class Highscores implements BaseColumns {
 		public static final String TABLE_NAME = "highscores";
 		public static final String COLUMN_NAME = "name";
@@ -50,18 +51,17 @@ public class DataHandler {
 	public DataHandler(Context context) {
 		db = (new OpenHelper(context.getApplicationContext())).getWritableDatabase();
 	}
-	
+
 	public static synchronized DataHandler getInstance(Context context) {
 		if (dataHandler == null) dataHandler = new DataHandler(context);
 		return dataHandler;
 	}
-	
+
 	public long count() {
 		SQLiteStatement s = db.compileStatement("SELECT count(*) from " + Highscores.TABLE_NAME);
 		return (long) s.simpleQueryForLong();
-	 
 	}
-	
+
     public List<Map<String, Object>> selectAll() {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         Cursor cursor = db.query(Highscores.TABLE_NAME, new String[] { Highscores.COLUMN_NAME,
@@ -81,7 +81,7 @@ public class DataHandler {
         if (cursor != null && !cursor.isClosed()) cursor.close();
         return list;
     }
-	
+
 	public List<Integer> selectAllTimes() {
         List<Integer> list = new ArrayList<Integer>();
         Cursor cursor = db.query(Highscores.TABLE_NAME, new String[] { Highscores.COLUMN_TIME },

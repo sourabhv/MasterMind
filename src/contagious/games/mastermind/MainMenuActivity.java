@@ -27,7 +27,7 @@ public class MainMenuActivity extends Activity {
     }
 
     public void onHighScoreClick(View view) {
-//        startActivity(new Intent(this, HighScoreActivity.class));
+        startActivity(new Intent(this, HighScoreActivity.class));
     }
 
     public void onSettingsClick(View view) {

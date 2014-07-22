@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ToggleButton;
+import android.widget.ImageButton;
 
 public class SettingsActivity extends Activity {
 
@@ -16,15 +16,28 @@ public class SettingsActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-    }
-	
-	public void soundToggleClick(View view) {
-		boolean soundOn = ((ToggleButton)view).isChecked();
-//		GameEngine.soundSwitch(soundOn);
+
+        ImageButton view = (ImageButton) findViewById(R.id.settings_sound_toggle);
+        view.setImageResource(R.drawable.sound_on);
+        view.setTag(R.drawable.sound_on);
+        GameEngine.soundStatus = true;
+	}
+
+	public void soundToggleClick(View view) {		
+		if(((Integer)((ImageButton) view).getTag()) == R.drawable.sound_on) {
+			((ImageButton) view).setImageResource(R.drawable.sound_off);
+			((ImageButton) view).setTag(R.drawable.sound_off);
+			GameEngine.soundStatus = false;
+		}
+		else {
+			((ImageButton) view).setImageResource(R.drawable.sound_on);
+			((ImageButton) view).setTag(R.drawable.sound_on);
+			GameEngine.soundStatus = true;
+		}
 	}
 	
 	public void highscoreResetClick(View view) {
-//		DataHandler.getInstance().deleteAll()
+		DataHandler.getInstance(this).deleteAll();
 	}
 
 }

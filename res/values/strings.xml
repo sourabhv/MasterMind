@@ -13,5 +13,8 @@
 
 	<!-- SettingsActivity -->
 	<string name="clear_highscore">Clear Highscores</string>
-
+	<string name="sound_toggle_button">Toggle Sound</string>
+	
+	<!-- HighScoreActivity -->
+	<string name="highscore_title">HighScores</string>
 </resources>
