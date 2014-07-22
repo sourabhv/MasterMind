@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:gravity="center_vertical" >
+
+    <ToggleButton android:id="@+id/settings_sound_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textOn="Sound On"
+        android:textOff="Sound Off"
+        android:onClick="soundToggleClick"
+        android:layout_marginBottom="20dp" />
+
+    <Button android:id="@+id/settings_highscore_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/clear_highscore"
+        android:onClick="highscoreResetClick" />
+
+</LinearLayout>

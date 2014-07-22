@@ -11,4 +11,7 @@
 	<string name="menu_button_settings">Settings</string>
 	<string name="menu_button_exit">Exit to Home Screen</string>
 
+	<!-- SettingsActivity -->
+	<string name="clear_highscore">Clear Highscores</string>
+
 </resources>
