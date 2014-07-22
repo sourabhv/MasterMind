@@ -36,6 +36,12 @@ public class DataHandler {
                     Highscores.COLUMN_NAME + " TEXT, " +
                     Highscores.COLUMN_TIME + " INTEGER, " +
                     Highscores.COLUMN_GUESSES + " INTEGER)");
+//            db.execSQL("INSERT INTO " + Highscores.TABLE_NAME +
+//            	    " (" + Highscores.COLUMN_NAME + ", " + Highscores.COLUMN_TIME +
+//            	    ", " + Highscores.COLUMN_GUESSES + ") VALUES (Sourabh, 100, 7)");
+//            db.execSQL("INSERT INTO " + Highscores.TABLE_NAME +
+//            	    " (" + Highscores.COLUMN_NAME + ", " + Highscores.COLUMN_TIME +
+//            	    ", " + Highscores.COLUMN_GUESSES + ") VALUES (Pulkit, 50, 2)");
 		}
 
 		@Override
