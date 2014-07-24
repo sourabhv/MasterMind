@@ -28,6 +28,7 @@ public class HighScoreActivity extends Activity {
         @Override
         protected List<Map<String, Object>> doInBackground(Void... params) {
             DataHandler dataHandler = DataHandler.getInstance(HighScoreActivity.this);
+            dataHandler.deleteAll();
             dataHandler.insert("Sourabh", 200, 7);
             dataHandler.insert("Pulkit", 100, 3);
             return dataHandler.selectAll();
@@ -60,9 +61,6 @@ public class HighScoreActivity extends Activity {
 
         highscoreTable = (TableLayout) findViewById(R.id.highscore_table);
         new PrintHighscores().execute();
-        
-//        delete
-        highscoreTitle.setText("HighScores: " + Long.toString(DataHandler.getInstance(this).count()));
     }
 
     private void addHeaders() {
@@ -89,6 +87,7 @@ public class HighScoreActivity extends Activity {
     private void printHighscores(List<Map<String, Object>> highscores) {
         int rankCount = 1;
         for (Map<String, Object> score : highscores) {
+            if (rankCount > 10) break;
             tr = new TableRow(this);
             highscoreTable.addView(tr);
 
@@ -103,23 +102,22 @@ public class HighScoreActivity extends Activity {
             td.setTextSize(25); tr.addView(td);
 
             td = new TextView(this);
-            td.setText(betterTime((Integer) score.get(DataHandler.Highscores.COLUMN_TIME)));
+            td.setText(getTimeString(Integer.parseInt(score.get(DataHandler.Highscores.COLUMN_TIME).toString())));
             td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
             td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
 
             td = new TextView(this);
-            td.setText((Integer) score.get(DataHandler.Highscores.COLUMN_GUESSES));
+            td.setText(score.get(DataHandler.Highscores.COLUMN_GUESSES).toString());
             td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
             td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
         }
     }
-    
-    private String betterTime(int time) {
-        int minutes = time / 60;
-        int seconds = time % 60;
-        String secs = (seconds < 10) ? ("0" + seconds) : Integer.toString(seconds);
-        String mins = (minutes < 10) ? ("0" + minutes) : Integer.toString(minutes);
+
+    private static String getTimeString(int time) {
+        final int minutes = time / 60;
+        final int seconds = time % 60;
+        final String secs = (seconds < 10) ? ("0" + seconds) : Integer.toString(seconds);
+        final String mins = (minutes < 10) ? ("0" + minutes) : Integer.toString(minutes);
         return mins + ":" + secs;
     }
-
 }
