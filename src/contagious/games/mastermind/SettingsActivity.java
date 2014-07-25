@@ -1,13 +1,30 @@
 package contagious.games.mastermind;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class SettingsActivity extends Activity {
+
+    private class DeleteHighscores extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            DataHandler dataHandler = DataHandler.getInstance(SettingsActivity.this);
+            dataHandler.deleteAll();
+            return Boolean.valueOf(true);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean deleted) {
+            super.onPostExecute(deleted);
+        }
+    }
+
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +52,11 @@ public class SettingsActivity extends Activity {
 			GameEngine.soundStatus = true;
 		}
 	}
-	
+
 	public void highscoreResetClick(View view) {
-		DataHandler.getInstance(this).deleteAll();
+		new DeleteHighscores().execute();
+		((Button) view).setText("Cleared");
+		((Button) view).setClickable(false);
 	}
 
 }
