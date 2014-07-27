@@ -19,7 +19,7 @@ public class MainMenuActivity extends Activity {
     }
 
     public void onPlayClick(View view) {
-//        startActivity(new Intent(this, MastermindActivity.class));
+        startActivity(new Intent(this, MastermindActivity.class));
     }
 
     public void onInstnClick(View view) {
