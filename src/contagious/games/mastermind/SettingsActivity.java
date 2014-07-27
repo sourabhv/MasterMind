@@ -35,20 +35,20 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.settings);
 
         ImageButton view = (ImageButton) findViewById(R.id.settings_sound_toggle);
-        view.setImageResource(R.drawable.sound_on);
-        view.setTag(R.drawable.sound_on);
+        view.setImageResource(R.drawable.ic_sound_on);
+        view.setTag(R.drawable.ic_sound_on);
         GameEngine.soundStatus = true;
 	}
 
 	public void soundToggleClick(View view) {		
-		if(((Integer)((ImageButton) view).getTag()) == R.drawable.sound_on) {
-			((ImageButton) view).setImageResource(R.drawable.sound_off);
-			((ImageButton) view).setTag(R.drawable.sound_off);
+		if(((Integer)((ImageButton) view).getTag()) == R.drawable.ic_sound_on) {
+			((ImageButton) view).setImageResource(R.drawable.ic_sound_off);
+			((ImageButton) view).setTag(R.drawable.ic_sound_off);
 			GameEngine.soundStatus = false;
 		}
 		else {
-			((ImageButton) view).setImageResource(R.drawable.sound_on);
-			((ImageButton) view).setTag(R.drawable.sound_on);
+			((ImageButton) view).setImageResource(R.drawable.ic_sound_on);
+			((ImageButton) view).setTag(R.drawable.ic_sound_on);
 			GameEngine.soundStatus = true;
 		}
 	}
