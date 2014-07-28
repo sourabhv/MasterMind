@@ -28,6 +28,7 @@ public class HighScoreActivity extends Activity {
         @Override
         protected List<Map<String, Object>> doInBackground(Void... params) {
             DataHandler dataHandler = DataHandler.getInstance(HighScoreActivity.this);
+            dataHandler.insert("Hi", 101, 10);
             return dataHandler.selectAll();
         }
 
@@ -66,19 +67,19 @@ public class HighScoreActivity extends Activity {
 
         td = new TextView(this);
         td.setText("Rank"); td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
-        td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
+        td.setTypeface(josefinSans); td.setTextSize(20); tr.addView(td);
 
         td = new TextView(this);
         td.setText("Name"); td.setTextColor(Color.WHITE); td.setTypeface(josefinSans);
-        tr.addView(td); td.setTextSize(25);
+        tr.addView(td); td.setTextSize(20);
 
         td = new TextView(this);
         td.setText("Time"); td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
-        td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
+        td.setTypeface(josefinSans); td.setTextSize(20); tr.addView(td);
 
         td = new TextView(this);
         td.setText("Guesses"); td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
-        td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
+        td.setTypeface(josefinSans); td.setTextSize(20); tr.addView(td);
     }
 
     private void printHighscores(List<Map<String, Object>> highscores) {
@@ -90,23 +91,23 @@ public class HighScoreActivity extends Activity {
 
             td = new TextView(this);
             td.setText(Integer.toString(rankCount)); td.setTextColor(Color.WHITE);
-            td.setGravity(Gravity.CENTER); td.setTypeface(josefinSans); td.setTextSize(25);
+            td.setGravity(Gravity.CENTER); td.setTypeface(josefinSans); td.setTextSize(20);
             tr.addView(td); rankCount++;
 
             td = new TextView(this);
             td.setText(score.get(DataHandler.Highscores.COLUMN_NAME).toString());
             td.setTextColor(Color.WHITE); td.setTypeface(josefinSans);
-            td.setTextSize(25); tr.addView(td);
+            td.setTextSize(20); tr.addView(td);
 
             td = new TextView(this);
             td.setText(getTimeString(Integer.parseInt(score.get(DataHandler.Highscores.COLUMN_TIME).toString())));
             td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
-            td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
+            td.setTypeface(josefinSans); td.setTextSize(20); tr.addView(td);
 
             td = new TextView(this);
             td.setText(score.get(DataHandler.Highscores.COLUMN_GUESSES).toString());
             td.setTextColor(Color.WHITE); td.setGravity(Gravity.CENTER);
-            td.setTypeface(josefinSans); td.setTextSize(25); tr.addView(td);
+            td.setTypeface(josefinSans); td.setTextSize(20); tr.addView(td);
         }
     }
 
