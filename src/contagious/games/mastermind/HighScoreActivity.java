@@ -28,7 +28,6 @@ public class HighScoreActivity extends Activity {
         @Override
         protected List<Map<String, Object>> doInBackground(Void... params) {
             DataHandler dataHandler = DataHandler.getInstance(HighScoreActivity.this);
-            dataHandler.insert("Hi", 101, 10);
             return dataHandler.selectAll();
         }
 

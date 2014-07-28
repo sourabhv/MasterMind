@@ -19,7 +19,8 @@
 	<TableLayout android:id="@+id/highscore_table"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:stretchColumns="0,1,2,3" >
+	    android:stretchColumns="1"
+	    android:shrinkColumns="1" >
 
 	</TableLayout>
 
