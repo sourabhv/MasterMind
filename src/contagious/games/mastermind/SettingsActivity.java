@@ -1,6 +1,8 @@
 package contagious.games.mastermind;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,20 +15,14 @@ import android.widget.TextView;
 
 public class SettingsActivity extends Activity {
 
-    private class DeleteHighscores extends AsyncTask<Void, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Void... params) {
+    private class DeleteHighscores extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected Void doInBackground(Void... params) {
             DataHandler dataHandler = DataHandler.getInstance(SettingsActivity.this);
             dataHandler.deleteAll();
-            return Boolean.valueOf(true);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean deleted) {
-            super.onPostExecute(deleted);
-        }
+			return null;
+		}
     }
-
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +55,25 @@ public class SettingsActivity extends Activity {
 		}
 	}
 
-	public void highscoreResetClick(View view) {
-		new DeleteHighscores().execute();
-		((Button) view).setText("Cleared");
-		((Button) view).setClickable(false);
+	public void highscoreResetClick(final View view) {
+		new AlertDialog.Builder(this)
+			.setTitle("Clear Highscores")
+			.setMessage("Are you sure you want to clear highscores?")
+			.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					new DeleteHighscores().execute();
+					((Button) view).setText("Cleared");
+					((Button) view).setClickable(false);					
+				}
+			})
+			.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// do nothing
+				}
+			})
+			.show();
 	}
 
 }
