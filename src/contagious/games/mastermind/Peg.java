@@ -6,28 +6,40 @@ import android.widget.ImageView;
 
 public class Peg extends ImageView {
 
-    public static int NULL = 0, BLUE = 1, GREEN = 2, RED = 3,
-                      WHITE = 4, YELLOW = 5, PURPLE = 6;
-    public static int[] PEGS = {R.drawable.emptypeg, R.drawable.bluepeg,
-        R.drawable.greenpeg, R.drawable.redpeg, R.drawable.whitepeg,
-        R.drawable.yellowpeg, R.drawable.purplepeg};
+    public static int NULL = -1, BLUE = 0, GREEN = 1, RED = 2, WHITE = 3,
+    		YELLOW = 4, PURPLE = 5, BASENORMAL = 0, BASESELECTED = 1;
+    public static int[] PEGS = {R.drawable.bluepeg, R.drawable.greenpeg, R.drawable.redpeg,
+    		R.drawable.whitepeg, R.drawable.yellowpeg, R.drawable.purplepeg};
+    public static int[] PEGSBASE = {R.drawable.basepeg, R.drawable.selectedbasepeg};
+
     private int drawableID;
     private boolean active;
 
-    public Peg(Context context, AttributeSet attrs) {
+    public Peg(Context context, AttributeSet attrs, int base, int peg) {
         super(context, attrs);
-        drawableID = NULL;
+        drawableID = peg;
         active = true;
-        setImageResource(PEGS[NULL]);
+        setBackgroundResource(PEGSBASE[base]);
+        if (peg >= 0)
+            setImageResource(PEGS[peg]);
     }
 
-    public int getDrawableID() {
+    public Peg(Context context, AttributeSet attrs) {
+        this(context, attrs, BASENORMAL, NULL);
+    }
+
+	public int getDrawableID() {
         return drawableID;
     }
 
     public void setDrawableID(int id) {
         drawableID = id;
-        setImageResource(PEGS[drawableID]);
+        if (id >= 0)
+            setImageResource(PEGS[id]);
+    }
+
+    public void setBackground(int id) {
+    	setBackgroundResource(id);
     }
 
     public boolean getState() {
