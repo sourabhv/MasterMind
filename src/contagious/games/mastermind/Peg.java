@@ -1,6 +1,7 @@
 package contagious.games.mastermind;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.widget.ImageView;
 
 public class Peg extends ImageView {
@@ -12,19 +13,13 @@ public class Peg extends ImageView {
     public static int[] PEGSBASE = {R.drawable.basepeg, R.drawable.selectedbasepeg};
 
     private int drawableID;
-    private boolean active;
+    private boolean ready;
 
-    public Peg(Context context, int base, int peg) {
-        super(context);
-        drawableID = peg;
-        active = true;
-        setBackgroundResource(PEGSBASE[base]);
-        if (peg >= 0)
-            setImageResource(PEGS[peg]);
-    }
-
-    public Peg(Context context) {
-        this(context, BASENORMAL, NULL);
+    public Peg(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        drawableID = NULL;
+        ready = true;
+        setBackgroundResource(PEGSBASE[BASENORMAL]);
     }
 
     public int getDrawableID() {
@@ -42,11 +37,11 @@ public class Peg extends ImageView {
     }
 
     public boolean getState() {
-        return active;
+        return ready;
     }
 
-    public void setState(boolean _active) {
-        active = _active;
+    public void setState(boolean _ready) {
+        ready = _ready;
     }
 
 }

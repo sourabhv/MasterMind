@@ -21,11 +21,12 @@
         android:layout_centerInParent="true"
         android:scrollbars="none" ></ScrollView>
 
-    <LinearLayout android:id="@+id/hotbar"
+    <RelativeLayout android:id="@+id/hotbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:orientation="vertical" ></LinearLayout>
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" ></RelativeLayout>
 
 </RelativeLayout>

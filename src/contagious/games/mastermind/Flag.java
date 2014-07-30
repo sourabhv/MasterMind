@@ -1,6 +1,7 @@
 package contagious.games.mastermind;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.widget.ImageView;
 
 public class Flag extends ImageView {
@@ -11,8 +12,8 @@ public class Flag extends ImageView {
     public static int FLAGS[] = {R.drawable.emptyflag, R.drawable.redflag, R.drawable.whiteflag};
     private int drawableID; // NULL or RED or WHITE
 
-    public Flag(Context context) {
-        super(context);
+    public Flag(Context context, AttributeSet attrs) {
+        super(context, attrs);
         drawableID = NULL;
         setImageResource(FLAGS[NULL]);
     }

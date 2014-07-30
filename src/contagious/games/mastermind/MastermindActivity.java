@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 public class MastermindActivity extends Activity {
@@ -15,8 +15,7 @@ public class MastermindActivity extends Activity {
     Typeface josefinSans;
     Chronometer timer;
     ScrollView playArea;
-    LinearLayout hotbar;
-    LinearLayout.LayoutParams wrapWidthHeightLinear;
+    RelativeLayout hotbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +27,8 @@ public class MastermindActivity extends Activity {
 
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         timer = ((Chronometer) findViewById(R.id.timer));
-        hotbar = (LinearLayout) findViewById(R.id.hotbar);
+        hotbar = (RelativeLayout) findViewById(R.id.hotbar);
         playArea = (ScrollView) findViewById(R.id.playarea);
-        wrapWidthHeightLinear = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
 
         timer.setTypeface(josefinSans);
         makePlayArea(this);
@@ -40,9 +36,25 @@ public class MastermindActivity extends Activity {
         timer.start();
 	}
 
-	private void makeHotbar(Context context) {
+    private void makeHotbar(Context context) {
+    	RelativeLayout.LayoutParams params;
+    	int pegIds[] = {Peg.BLUE, Peg.GREEN, Peg.RED, Peg.WHITE, Peg.YELLOW, Peg.PURPLE};
+    	Peg peg;
+    	final int IDLB = 1000;
 
-	}
+    	for (int i = 0; i < pegIds.length; i++) {
+    		peg = new Peg(context, null);
+    		peg.setId(i + IDLB);
+    		peg.setTag("hotbar_" + i);
+    		peg.setDrawableID(pegIds[i]);
+    		params = new RelativeLayout.LayoutParams(
+    				RelativeLayout.LayoutParams.WRAP_CONTENT,
+    				RelativeLayout.LayoutParams.WRAP_CONTENT);
+    		if (i > 0)
+    			params.addRule(RelativeLayout.RIGHT_OF, (i + IDLB) - 1);
+    		hotbar.addView(peg, params);
+    	}
+    }
 
 	private void makePlayArea(Context context) {
 
