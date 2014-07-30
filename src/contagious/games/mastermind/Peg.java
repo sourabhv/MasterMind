@@ -1,22 +1,21 @@
 package contagious.games.mastermind;
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.widget.ImageView;
 
 public class Peg extends ImageView {
 
     public static int NULL = -1, BLUE = 0, GREEN = 1, RED = 2, WHITE = 3,
-    		YELLOW = 4, PURPLE = 5, BASENORMAL = 0, BASESELECTED = 1;
+            YELLOW = 4, PURPLE = 5, BASENORMAL = 0, BASESELECTED = 1;
     public static int[] PEGS = {R.drawable.bluepeg, R.drawable.greenpeg, R.drawable.redpeg,
-    		R.drawable.whitepeg, R.drawable.yellowpeg, R.drawable.purplepeg};
+            R.drawable.whitepeg, R.drawable.yellowpeg, R.drawable.purplepeg};
     public static int[] PEGSBASE = {R.drawable.basepeg, R.drawable.selectedbasepeg};
 
     private int drawableID;
     private boolean active;
 
-    public Peg(Context context, AttributeSet attrs, int base, int peg) {
-        super(context, attrs);
+    public Peg(Context context, int base, int peg) {
+        super(context);
         drawableID = peg;
         active = true;
         setBackgroundResource(PEGSBASE[base]);
@@ -24,11 +23,11 @@ public class Peg extends ImageView {
             setImageResource(PEGS[peg]);
     }
 
-    public Peg(Context context, AttributeSet attrs) {
-        this(context, attrs, BASENORMAL, NULL);
+    public Peg(Context context) {
+        this(context, BASENORMAL, NULL);
     }
 
-	public int getDrawableID() {
+    public int getDrawableID() {
         return drawableID;
     }
 
@@ -39,7 +38,7 @@ public class Peg extends ImageView {
     }
 
     public void setBackground(int id) {
-    	setBackgroundResource(id);
+        setBackgroundResource(id);
     }
 
     public boolean getState() {
