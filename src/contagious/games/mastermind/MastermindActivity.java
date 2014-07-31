@@ -7,15 +7,15 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 public class MastermindActivity extends Activity {
 
     Typeface josefinSans;
     Chronometer timer;
     GameEngine gameEngine;
-    LinearLayout playArea;
+    ScrollView playArea;
     RelativeLayout hotbar;
 
     @Override
@@ -29,7 +29,7 @@ public class MastermindActivity extends Activity {
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         timer = ((Chronometer) findViewById(R.id.timer));
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
-        playArea = (LinearLayout) findViewById(R.id.playarea);
+        playArea = (ScrollView) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
 
         timer.setTypeface(josefinSans);
@@ -56,5 +56,5 @@ public class MastermindActivity extends Activity {
             hotbar.addView(peg, params);
         }
     }
-
+ 
 }
