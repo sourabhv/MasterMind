@@ -10,14 +10,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 public class MastermindActivity extends Activity {
 
     Typeface josefinSans;
     Chronometer timer;
     GameEngine gameEngine;
-    ScrollView playArea;
     RelativeLayout hotbar;
     OnClickListener onHotbarClick;
 
@@ -32,15 +30,21 @@ public class MastermindActivity extends Activity {
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         timer = ((Chronometer) findViewById(R.id.timer));
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
-        playArea = (ScrollView) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
 
         onHotbarClick = new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				timer.setText("Hotbar Clicked");
-			}
-		};
+            @Override
+            public void onClick(View view) {
+                Peg peg = (Peg) view;
+                if (peg.backgroundID() == Peg.BASESELECTED)
+                    peg.setBackgroundID(Peg.BASENORMAL);
+                else {
+                    for (int i = 0; i < hotbar.getChildCount(); i++)
+                        ((Peg) hotbar.getChildAt(i)).setBackgroundID(Peg.BASENORMAL);
+                    peg.setBackgroundID(Peg.BASESELECTED);
+                }
+            }
+        };
 
         timer.setTypeface(josefinSans);
         makeHotbar(this);
@@ -69,11 +73,10 @@ public class MastermindActivity extends Activity {
     }
 
     public void onPegClick(View view) {
-    	timer.setText("Peg Clicked!");
+        timer.setText("Peg Clicked!");
     }
 
     public void onConfirmClick(View view) {
-    	timer.setText("Confirm Clicked!");
     }
-    
+
 }
