@@ -57,24 +57,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg0"
                     android:tag="playarea9_peg0"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag1" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg1"
                     android:tag="playarea9_peg1"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg0" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg2"
                     android:tag="playarea9_peg2"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg1" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg3"
                     android:tag="playarea9_peg3"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg2" />
@@ -82,6 +86,7 @@
                 <ImageView android:id="@+id/confirm0"
                     android:tag="playarea9_confirm0"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,24 +125,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg4"
                     android:tag="playarea8_peg4"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag5" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg5"
                     android:tag="playarea8_peg5"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg4" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg6"
                     android:tag="playarea8_peg6"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg5" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg7"
                     android:tag="playarea8_peg7"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg6" />
@@ -145,6 +154,7 @@
                 <ImageView android:id="@+id/confirm1"
                     android:tag="playarea8_confirm1"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,24 +193,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg8"
                     android:tag="playarea7_peg8"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag9" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg9"
                     android:tag="playarea7_peg9"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg8" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg10"
                     android:tag="playarea7_peg10"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg9" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg11"
                     android:tag="playarea7_peg11"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg10" />
@@ -208,6 +222,7 @@
                 <ImageView android:id="@+id/confirm2"
                     android:tag="playarea7_confirm2"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -246,24 +261,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg12"
                     android:tag="playarea6_peg12"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag13" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg13"
                     android:tag="playarea6_peg13"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg12" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg14"
                     android:tag="playarea6_peg14"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg13" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg15"
                     android:tag="playarea6_peg15"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg14" />
@@ -271,6 +290,7 @@
                 <ImageView android:id="@+id/confirm3"
                     android:tag="playarea6_confirm3"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -309,24 +329,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg16"
                     android:tag="playarea5_peg16"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag17" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg17"
                     android:tag="playarea5_peg17"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg16" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg18"
                     android:tag="playarea5_peg18"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg17" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg19"
                     android:tag="playarea5_peg19"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg18" />
@@ -334,6 +358,7 @@
                 <ImageView android:id="@+id/confirm4"
                     android:tag="playarea5_confirm4"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -372,24 +397,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg20"
                     android:tag="playarea4_peg20"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag21" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg21"
                     android:tag="playarea4_peg21"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg20" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg22"
                     android:tag="playarea4_peg22"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg21" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg23"
                     android:tag="playarea4_peg23"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg22" />
@@ -397,6 +426,7 @@
                 <ImageView android:id="@+id/confirm5"
                     android:tag="playarea4_confirm5"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -435,24 +465,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg24"
                     android:tag="playarea3_peg24"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag25" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg25"
                     android:tag="playarea3_peg25"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg24" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg26"
                     android:tag="playarea3_peg26"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg25" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg27"
                     android:tag="playarea3_peg27"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg26" />
@@ -460,6 +494,7 @@
                 <ImageView android:id="@+id/confirm6"
                     android:tag="playarea3_confirm6"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -498,24 +533,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg28"
                     android:tag="playarea2_peg28"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag29" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg29"
                     android:tag="playarea2_peg29"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg28" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg30"
                     android:tag="playarea2_peg30"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg29" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg31"
                     android:tag="playarea2_peg31"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg30" />
@@ -523,6 +562,7 @@
                 <ImageView android:id="@+id/confirm7"
                     android:tag="playarea2_confirm7"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -561,24 +601,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg32"
                     android:tag="playarea1_peg32"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag33" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg33"
                     android:tag="playarea1_peg33"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg32" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg34"
                     android:tag="playarea1_peg34"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg33" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg35"
                     android:tag="playarea1_peg35"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg34" />
@@ -586,6 +630,7 @@
                 <ImageView android:id="@+id/confirm8"
                     android:tag="playarea1_confirm8"
                     android:src="@drawable/confirmblank"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -624,24 +669,28 @@
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg36"
                     android:tag="playarea0_peg36"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/flag37" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg37"
                     android:tag="playarea0_peg37"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg36" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg38"
                     android:tag="playarea0_peg38"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg37" />
 
                 <contagious.games.mastermind.Peg android:id="@+id/peg39"
                     android:tag="playarea0_peg39"
+                    android:onClick="onPegClick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/peg38" />
@@ -649,6 +698,7 @@
                 <ImageView android:id="@+id/confirm9"
                     android:tag="playarea0_confirm9"
                     android:src="@drawable/confirm"
+                    android:onClick="onConfirmClick"
                     android:contentDescription="@string/confirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

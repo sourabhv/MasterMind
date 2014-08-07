@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
@@ -17,6 +19,7 @@ public class MastermindActivity extends Activity {
     GameEngine gameEngine;
     ScrollView playArea;
     RelativeLayout hotbar;
+    OnClickListener onHotbarClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,13 @@ public class MastermindActivity extends Activity {
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
         playArea = (ScrollView) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
+
+        onHotbarClick = new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				timer.setText("Hotbar Clicked");
+			}
+		};
 
         timer.setTypeface(josefinSans);
         makeHotbar(this);
@@ -48,6 +58,7 @@ public class MastermindActivity extends Activity {
             peg.setId(i + IDLB);
             peg.setTag("hotbar_" + i);
             peg.setDrawableID(pegIds[i]);
+            peg.setOnClickListener(onHotbarClick);
             params = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -56,5 +67,13 @@ public class MastermindActivity extends Activity {
             hotbar.addView(peg, params);
         }
     }
- 
+
+    public void onPegClick(View view) {
+    	timer.setText("Peg Clicked!");
+    }
+
+    public void onConfirmClick(View view) {
+    	timer.setText("Confirm Clicked!");
+    }
+    
 }
