@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class MastermindActivity extends Activity {
@@ -17,6 +19,8 @@ public class MastermindActivity extends Activity {
     Chronometer timer;
     GameEngine gameEngine;
     RelativeLayout hotbar;
+    LinearLayout playarea;
+
     OnClickListener onHotbarClick;
 
     @Override
@@ -30,6 +34,7 @@ public class MastermindActivity extends Activity {
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         timer = ((Chronometer) findViewById(R.id.timer));
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
+        playarea = (LinearLayout) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
 
         onHotbarClick = new OnClickListener() {
@@ -99,7 +104,43 @@ public class MastermindActivity extends Activity {
     }
 
     public void onConfirmClick(View view) {
+        ImageView confirm = (ImageView) view;
+        int playlevel = Integer.parseInt(confirm.getTag().toString().substring(8, 9));
+        int[] pegCombo = new int[4];
+        if (playlevel != gameEngine.guessCount)
+            return;
 
+        RelativeLayout parent = (RelativeLayout) confirm.getParent();
+
+        for (int i = 4; i < 8; i++) {
+            Peg peg = (Peg) parent.getChildAt(i);
+            pegCombo[i-4] = peg.drawableID();
+            if (peg.drawableID() == Peg.NULL)
+                return;
+        }
+
+        int[] flagCombo = gameEngine.getFlagCombo(pegCombo);
+        boolean win = gameEngine.getWinStatus(flagCombo);
+
+        if (win) {
+            // call MainMenu with intent to launch GameOver Activity with "You Won" string
+        } else {
+            if (gameEngine.guessCount < 9)
+                gameEngine.guessCount++;
+            else {
+                // call MainMenu with intent to launch GameOver Activity with "You Lose" string
+            }
+
+            for (int i = 0; i < 4; i++) {
+                Flag flag = (Flag) parent.getChildAt(i);
+                flag.setDrawableID(flagCombo[i]);
+            }
+
+            confirm.setImageResource(R.drawable.confirmblank);
+            RelativeLayout r = (RelativeLayout) playarea.getChildAt(9 - playlevel - 1);
+            ImageView nextConfirm = (ImageView) r.getChildAt(8);
+            nextConfirm.setImageResource(R.drawable.confirm);
+        }
     }
 
 }

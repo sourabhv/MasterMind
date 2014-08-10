@@ -35,7 +35,7 @@ public class Peg extends ImageView {
         setImageResource(PEGS[id]);
     }
 
-    public boolean getState() {
+    public boolean isReady() {
         return ready;
     }
 

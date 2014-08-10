@@ -14,13 +14,13 @@
         android:textSize="20sp"
         android:text="" />
 
-    <ScrollView android:id="@+id/playarea"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/hotbar"
         android:layout_below="@id/timer" >
 
-        <LinearLayout
+        <LinearLayout android:id="@+id/playarea"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
