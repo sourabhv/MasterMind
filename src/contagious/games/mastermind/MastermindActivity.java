@@ -39,7 +39,8 @@ public class MastermindActivity extends Activity {
                 if (peg.drawableID() >= Peg.PEGSCOUNT)
                     peg.setDrawableID(peg.drawableID() - Peg.PEGSCOUNT);
                 else {
-                    for (int i = 0; i < hotbar.getChildCount(); i++) {
+                    int len = hotbar.getChildCount();
+                    for (int i = 0; i < len; i++) {
                         Peg cPeg = (Peg) hotbar.getChildAt(i);
                         if (cPeg.drawableID() >= Peg.PEGSCOUNT)
                             cPeg.setDrawableID(cPeg.drawableID() - Peg.PEGSCOUNT);
@@ -77,7 +78,24 @@ public class MastermindActivity extends Activity {
     }
 
     public void onPegClick(View view) {
-        timer.setText("Peg Clicked!");
+        Peg peg = (Peg) view;
+        int active_peg = Peg.NULL, len = hotbar.getChildCount();
+        int playlevel = Integer.parseInt(peg.getTag().toString().substring(8, 9));
+        if (playlevel != gameEngine.guessCount)
+            return;
+
+        for (int i = 0; i < len; i++) {
+            Peg cPeg = (Peg) hotbar.getChildAt(i);
+            if (cPeg.drawableID() >= Peg.PEGSCOUNT) {
+                active_peg = cPeg.drawableID();
+                break;
+            }
+        }
+
+        if (active_peg != Peg.NULL)
+            active_peg -= Peg.PEGSCOUNT;
+
+        peg.setDrawableID(active_peg);
     }
 
     public void onConfirmClick(View view) {
