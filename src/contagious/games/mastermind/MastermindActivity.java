@@ -36,12 +36,16 @@ public class MastermindActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Peg peg = (Peg) view;
-                if (peg.backgroundID() == Peg.BASESELECTED)
-                    peg.setBackgroundID(Peg.BASENORMAL);
+                if (peg.drawableID() >= Peg.PEGSCOUNT)
+                    peg.setDrawableID(peg.drawableID() - Peg.PEGSCOUNT);
                 else {
-                    for (int i = 0; i < hotbar.getChildCount(); i++)
-                        ((Peg) hotbar.getChildAt(i)).setBackgroundID(Peg.BASENORMAL);
-                    peg.setBackgroundID(Peg.BASESELECTED);
+                    for (int i = 0; i < hotbar.getChildCount(); i++) {
+                        Peg cPeg = (Peg) hotbar.getChildAt(i);
+                        if (cPeg.drawableID() >= Peg.PEGSCOUNT)
+                            cPeg.setDrawableID(cPeg.drawableID() - Peg.PEGSCOUNT);
+                    }
+
+                    peg.setDrawableID(peg.drawableID() + Peg.PEGSCOUNT);
                 }
             }
         };
@@ -77,6 +81,7 @@ public class MastermindActivity extends Activity {
     }
 
     public void onConfirmClick(View view) {
+
     }
 
 }

@@ -9,7 +9,7 @@ public class Flag extends ImageView {
     // RED flag means color is correct, position is not
     // WHITE flag means that both position and color are correct.
     public static int NULL = 0, RED = 1, WHITE = 2;
-    public static int FLAGS[] = {R.drawable.emptyflag, R.drawable.redflag, R.drawable.whiteflag};
+    public static int FLAGS[] = {R.drawable.flag_empty, R.drawable.flag_red, R.drawable.flag_white};
     private int drawableID; // NULL or RED or WHITE
 
     public Flag(Context context, AttributeSet attrs) {

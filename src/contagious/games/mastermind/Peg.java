@@ -6,23 +6,24 @@ import android.widget.ImageView;
 
 public class Peg extends ImageView {
 
-    public static int PEGSCOUNT = 6;
-    public static int NULL = -1, BLUE = 0, GREEN = 1, RED = 2, WHITE = 3,
-            YELLOW = 4, PURPLE = 5, BASENORMAL = 0, BASESELECTED = 1;
-    public static int[] PEGS = {R.drawable.bluepeg, R.drawable.greenpeg, R.drawable.redpeg,
-            R.drawable.whitepeg, R.drawable.yellowpeg, R.drawable.purplepeg};
-    public static int[] PEGSBASE = {R.drawable.basepeg, R.drawable.selectedbasepeg};
+	public static int PEGSCOUNT = 6;
+	public static int BLUE = 0, GREEN = 1, RED = 2, WHITE = 3, YELLOW = 4, PURPLE = 5,
+		BLUE_SELECTED = 6, GREEN_SELECTED = 7, RED_SELECTED = 8, WHITE_SELECTED = 9,
+		YELLOW_SELECTED = 10, PURPLE_SELECTED = 11, NULL = 12;
+	public static int[] PEGS = { R.drawable.peg_blue, R.drawable.peg_green, R.drawable.peg_red,
+		R.drawable.peg_white, R.drawable.peg_yellow, R.drawable.peg_purple,
+		R.drawable.peg_blue_selected, R.drawable.peg_green_selected, R.drawable.peg_red_selected,
+		R.drawable.peg_white_selected, R.drawable.peg_yellow_selected, R.drawable.peg_purple_selected,
+		R.drawable.peg_empty };
 
-    private int drawableID;
-    private int backgroundID;
+	private int drawableID;
     private boolean ready;
 
     public Peg(Context context, AttributeSet attrs) {
         super(context, attrs);
         drawableID = NULL;
-        backgroundID = BASENORMAL;
         ready = true;
-        setBackgroundResource(PEGSBASE[BASENORMAL]);
+        setImageResource(PEGS[NULL]);
     }
 
     public int drawableID() {
@@ -31,17 +32,7 @@ public class Peg extends ImageView {
 
     public void setDrawableID(int id) {
         drawableID = id;
-        if (id >= 0)
-            setImageResource(PEGS[id]);
-    }
-
-    public int backgroundID() {
-        return backgroundID;
-    }
-
-    public void setBackgroundID(int id) {
-        backgroundID = id;
-        setBackgroundResource(PEGSBASE[backgroundID]);
+        setImageResource(PEGS[id]);
     }
 
     public boolean getState() {
