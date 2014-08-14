@@ -25,7 +25,8 @@
 
         <activity
             android:name="contagious.games.mastermind.MastermindActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:noHistory="true" />
 
         <activity
             android:name="contagious.games.mastermind.InstructionsActivity"
@@ -38,6 +39,11 @@
         <activity
             android:name="contagious.games.mastermind.SettingsActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="contagious.games.mastermind.EndGameActivity"
+            android:screenOrientation="portrait"
+            android:noHistory="true" />
 
     </application>
 

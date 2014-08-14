@@ -3,16 +3,26 @@
 
     <string name="app_name">MasterMind</string>
     <string name="ad_loading">Loading Ad &#8230;</string>
-	<string name="instructions">Instructions</string>
-	<string name="highscores">HighScores</string>
-	<string name="settings">Settings</string>
-	<string name="exit">Exit</string>
-	<string name="confirm">Confirm</string>
+    <string name="instructions">Instructions</string>
+    <string name="highscores">HighScores</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="confirm">Confirm</string>
+    <string name="name">Name</string>
+    <string name="submit">Submit</string>
+
     <!-- MainMenuActivity -->
-	<string name="play">Play Game</string>
+    <string name="play">Play Game</string>
 
-	<!-- SettingsActivity -->
-	<string name="clear_highscore">Clear Highscores</string>
-	<string name="sound_toggle_button">Toggle Sound</string>
+    <!-- SettingsActivity -->
+    <string name="clear_highscore">Clear Highscores</string>
+    <string name="sound_toggle_button">Toggle Sound</string>
 
+    <!-- Mastermind -->
+    <string name="gotoMainMenu">Go to Main Menu</string>
+
+    <!-- EndGame -->
+    <string name="youwin">You Win</string>
+    <string name="youlose">You Lose</string>
+    <string name="nameforhighscore">Enter your name for Highscore:</string>
 </resources>

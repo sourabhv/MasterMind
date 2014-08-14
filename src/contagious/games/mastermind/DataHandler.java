@@ -82,21 +82,6 @@ public class DataHandler {
         return list;
     }
 
-	public List<Integer> selectAllTimes() {
-        List<Integer> list = new ArrayList<Integer>();
-        Cursor cursor = db.query(Highscores.TABLE_NAME, new String[] { Highscores.COLUMN_TIME },
-                null, null, null, null, Highscores.COLUMN_TIME + " asc, " + Highscores.COLUMN_GUESSES + " asc");
-
-        if (cursor.moveToFirst()) {
-            do {
-                list.add(cursor.getInt(0));
-            } while (cursor.moveToNext());
-        }
-
-        if (cursor != null && !cursor.isClosed()) cursor.close();
-        return list;
-	}
-
     public long insert(String name, int time, int guesses) {
         ContentValues cv  = new ContentValues(3);
         cv.put(Highscores.COLUMN_NAME, name);

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+
+    <TextView android:id="@+id/endgame_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:textSize="40sp"
+        android:textColor="@android:color/white"
+        android:gravity="center" />
+    
+    <TextView android:id="@+id/endgame_submessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endgame_message"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+	<EditText android:id="@+id/endgame_name"
+	    android:layout_below="@id/endgame_submessage"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="20dp"
+	    android:hint="@string/name"
+	    android:inputType="text"
+	    android:visibility="invisible" />
+
+    <Button android:id="@+id/endgame_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endgame_name"
+        android:layout_margin="10dp"
+        android:text="@string/submit"
+        android:layout_centerHorizontal="true"
+	    android:visibility="invisible"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:onClick="onSubmit"
+	    android:background="@drawable/button" />
+
+    <Button android:id="@+id/endgame_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endgame_message"
+        android:layout_margin="10dp"
+        android:text="@string/gotoMainMenu"
+        android:layout_centerHorizontal="true"
+	    android:visibility="invisible"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:onClick="onBack"
+	    android:background="@drawable/button" />
+
+</RelativeLayout>

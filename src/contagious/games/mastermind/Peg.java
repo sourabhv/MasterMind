@@ -17,12 +17,10 @@ public class Peg extends ImageView {
 		R.drawable.peg_empty };
 
 	private int drawableID;
-    private boolean ready;
 
     public Peg(Context context, AttributeSet attrs) {
         super(context, attrs);
         drawableID = NULL;
-        ready = true;
         setImageResource(PEGS[NULL]);
     }
 
@@ -33,14 +31,6 @@ public class Peg extends ImageView {
     public void setDrawableID(int id) {
         drawableID = id;
         setImageResource(PEGS[id]);
-    }
-
-    public boolean isReady() {
-        return ready;
-    }
-
-    public void setState(boolean _ready) {
-        ready = _ready;
     }
 
 }

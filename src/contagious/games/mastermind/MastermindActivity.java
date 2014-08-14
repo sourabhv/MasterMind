@@ -1,27 +1,51 @@
 package contagious.games.mastermind;
 
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
+import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class MastermindActivity extends Activity {
 
+    private class GetHighscores extends AsyncTask<Void, Void, Void> {
+        List<Map<String, Object>> list;
+        @Override
+        protected Void doInBackground(Void... params) {
+            DataHandler dataHandler = DataHandler.getInstance(MastermindActivity.this);
+            list = dataHandler.selectAll();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            highscores = list;
+        }
+    }
+
     Typeface josefinSans;
     Chronometer timer;
     GameEngine gameEngine;
     RelativeLayout hotbar;
     LinearLayout playarea;
-
+    List<Map<String, Object>> highscores;
     OnClickListener onHotbarClick;
+    int elapsedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +55,21 @@ public class MastermindActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mastermind);
 
+        new GetHighscores().execute();
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         timer = ((Chronometer) findViewById(R.id.timer));
+        timer.setBase(SystemClock.elapsedRealtime());
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
         playarea = (LinearLayout) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
+        elapsedTime = -1;
+
+        timer.setOnChronometerTickListener(new OnChronometerTickListener() {
+			@Override
+			public void onChronometerTick(Chronometer arg0) {
+				elapsedTime += 1;
+			}
+		});
 
         onHotbarClick = new OnClickListener() {
             @Override
@@ -123,12 +157,32 @@ public class MastermindActivity extends Activity {
         boolean win = gameEngine.getWinStatus(flagCombo);
 
         if (win) {
-            // call MainMenu with intent to launch GameOver Activity with "You Won" string
+            timer.stop();
+            // final long timeElapsed = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000;
+            final int guesses = gameEngine.guessCount + 1;
+
+            boolean ishighscore = gameEngine.checkHighScore(highscores, elapsedTime, guesses);
+
+            Intent intent = new Intent(this, EndGameActivity.class);
+            intent.putExtra(GameEngine.WIN, GameEngine.TRUE);
+
+            if (ishighscore) {
+                intent.putExtra(GameEngine.ISHIGHSCORE, GameEngine.TRUE);
+                intent.putExtra(GameEngine.TIME, elapsedTime);
+                intent.putExtra(GameEngine.GUESSES, guesses);
+            } else {
+                intent.putExtra(GameEngine.ISHIGHSCORE, GameEngine.FALSE);
+            }
+
+            startActivity(intent);
+
         } else {
             if (gameEngine.guessCount < 9)
                 gameEngine.guessCount++;
             else {
-                // call MainMenu with intent to launch GameOver Activity with "You Lose" string
+                Intent intent = new Intent(this, EndGameActivity.class);
+                intent.putExtra(GameEngine.WIN, GameEngine.FALSE);
+                startActivity(intent);
             }
 
             for (int i = 0; i < 4; i++) {

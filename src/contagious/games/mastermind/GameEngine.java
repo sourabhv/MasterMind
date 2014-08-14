@@ -1,8 +1,19 @@
 package contagious.games.mastermind;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class GameEngine {
 
-    public static boolean soundStatus;
+	public static final String ISHIGHSCORE = "contagious.games.mastermind.HIGHSCORE";
+	public static final String TIME = "contagious.games.mastermind.TIME";
+	public static final String GUESSES = "contagious.games.mastermind.GUESSES";
+	public static final String WIN = "contagious.games.mastermind.WIN";
+	public static final String TRUE = "TRUE";
+	public static final String FALSE = "FALSE";
+
+	public static boolean soundStatus;
     public static final int MAX_GUESSES = 10;
     public static final int COMBOLENGTH = 4;
 
@@ -36,7 +47,7 @@ public class GameEngine {
         for (int i = 0; i < COMBOLENGTH; i++)
             if (pegComboReady[i])
                 for (int j = 0; j < COMBOLENGTH; j++)
-                    if (combinationReady[j]) {
+                    if (combinationReady[j] && pegCombo[i] == combination[j]) {
                         combinationReady[j] = false;
                         flagCombo[flagComboCounter] = Flag.RED;
                         flagComboCounter++;
@@ -51,5 +62,22 @@ public class GameEngine {
                 return false;
         return true;
     }
+
+	public boolean checkHighScore(List<Map<String, Object>> highscores, long timeElapsed, int guessesTaken) {
+		if (highscores.size() < 10)
+			return true;
+		int i;
+		for (i = 0; i < highscores.size(); i++) {
+			HashMap<String, Object> score = (HashMap<String, Object>) highscores.get(i);
+			int time = (Integer) score.get(DataHandler.Highscores.COLUMN_TIME);
+			int guesses = (Integer) score.get(DataHandler.Highscores.COLUMN_GUESSES);
+			if (timeElapsed < time || (timeElapsed == time && guessesTaken < guesses))
+				break;
+		}
+
+		if (i == highscores.size())
+			return false;
+		return true;
+	}
 
 }
