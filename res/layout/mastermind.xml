@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="@android:color/white" >
+    android:background="@drawable/background" >
 
     <Chronometer android:id="@+id/timer"
         android:layout_width="fill_parent"
@@ -16,9 +16,8 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/hotbar"
-        android:layout_below="@id/timer" >
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" >
 
         <LinearLayout android:id="@+id/playarea"
             android:layout_width="fill_parent"
@@ -28,6 +27,8 @@
 
             <!-- Guess 9 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -96,6 +97,8 @@
 
             <!-- Guess 8 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -164,6 +167,8 @@
 
             <!-- Guess 7 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -232,6 +237,8 @@
 
             <!-- Guess 6 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -300,6 +307,8 @@
 
             <!-- Guess 5 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -368,6 +377,8 @@
 
             <!-- Guess 4 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -436,6 +447,8 @@
 
             <!-- Guess 3 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -504,6 +517,8 @@
 
             <!-- Guess 2 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -572,6 +587,8 @@
 
             <!-- Guess 1 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -640,6 +657,8 @@
 
             <!-- Guess 0 -->
             <RelativeLayout
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -710,7 +729,7 @@
 
     </ScrollView>
 
-    <RelativeLayout android:id="@id/hotbar"
+    <RelativeLayout android:id="@+id/hotbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

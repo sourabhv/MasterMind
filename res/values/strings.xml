@@ -27,8 +27,8 @@
     <string name="nameforhighscore">Enter your name for Highscore:</string>
 
     <!-- Instructions -->
-    <string name="text1"></string>
-    <string name="text2"></string>
-    <string name="text3"></string>
-    <string name="text4"></string>
+    <string name="text1">Tap a peg on Hotbar to select it. Tap again to deselect or tap any other peg to select it</string>
+    <string name="text2">Tap the pegs in play area to fill them with the selected colour and tap the confirm button to confirm your combination</string>
+    <string name="text3">Use the flags for guessing a better combination. A white flag means that you selected a correct colour and placed it in correct position. A red flag means that the selected color is correct but its position is not.</string>
+
 </resources>
