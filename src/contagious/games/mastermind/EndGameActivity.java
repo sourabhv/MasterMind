@@ -18,17 +18,16 @@ import android.widget.TextView;
 
 public class EndGameActivity extends Activity {
 
-    private class AddHighscore extends AsyncTask<Map<String, Object>, Void, Void> {
+    private class AddHighscore extends AsyncTask<Void, Void, Void> {
         @Override
-        protected Void doInBackground(Map<String, Object>... params) {
+        protected Void doInBackground(Void... params) {
             DataHandler dataHandler = DataHandler.getInstance(EndGameActivity.this);
             List<Map<String, Object>> highscores = dataHandler.selectAll();
             dataHandler.deleteAll();
 
-            HashMap<String, Object> pScore = (HashMap<String, Object>) params[0];
-            String pName = pScore.get(DataHandler.Highscores.COLUMN_NAME).toString();
-            int pTime = Integer.parseInt(pScore.get(DataHandler.Highscores.COLUMN_TIME).toString());
-            int pGuesses = Integer.parseInt(pScore.get(DataHandler.Highscores.COLUMN_GUESSES).toString());
+            String pName = pMap.get(DataHandler.Highscores.COLUMN_NAME).toString();
+            int pTime = Integer.parseInt(pMap.get(DataHandler.Highscores.COLUMN_TIME).toString());
+            int pGuesses = Integer.parseInt(pMap.get(DataHandler.Highscores.COLUMN_GUESSES).toString());
             boolean playerAdded = false;
 
             for(int i = 0, count = 0; i < highscores.size() && count < 10; ) {
@@ -62,6 +61,7 @@ public class EndGameActivity extends Activity {
     EditText name;
     Button submit;
     Button back;
+    Map<String, Object> pMap;
     int time;
     int guesses;
 
@@ -109,12 +109,11 @@ public class EndGameActivity extends Activity {
 
 	public void onSubmit(View view) {
         if (name.length() > 0) {
-            Map<String, Object>[] map = new HashMap[1];
-            map[0] = new HashMap<String, Object>();
-            map[0].put(DataHandler.Highscores.COLUMN_NAME, name.getText().toString());
-            map[0].put(DataHandler.Highscores.COLUMN_TIME, time);
-            map[0].put(DataHandler.Highscores.COLUMN_GUESSES, guesses);
-            (new AddHighscore()).execute(map);
+            pMap = new HashMap<String, Object>();
+            pMap.put(DataHandler.Highscores.COLUMN_NAME, name.getText().toString());
+            pMap.put(DataHandler.Highscores.COLUMN_TIME, time);
+            pMap.put(DataHandler.Highscores.COLUMN_GUESSES, guesses);
+            (new AddHighscore()).execute();
             finish();
         }
     }
