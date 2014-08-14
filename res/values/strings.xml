@@ -25,4 +25,10 @@
     <string name="youwin">You Win</string>
     <string name="youlose">You Lose</string>
     <string name="nameforhighscore">Enter your name for Highscore:</string>
+
+    <!-- Instructions -->
+    <string name="text1"></string>
+    <string name="text2"></string>
+    <string name="text3"></string>
+    <string name="text4"></string>
 </resources>

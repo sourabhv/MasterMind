@@ -49,7 +49,7 @@ public class EndGameActivity extends Activity {
             }
 
             if (!playerAdded) {
-                dataHandler.insert(pName, pTime, pGuesses);      
+                dataHandler.insert(pName, pTime, pGuesses);
             }
 
             return null;
@@ -93,7 +93,7 @@ public class EndGameActivity extends Activity {
             message.setText(R.string.youwin);
             String ishighscore = intent.getStringExtra(GameEngine.ISHIGHSCORE);
             if (ishighscore.equals(GameEngine.TRUE)) {
-            	submessage.setVisibility(View.VISIBLE);
+                submessage.setVisibility(View.VISIBLE);
                 name.setVisibility(View.VISIBLE);
                 submit.setVisibility(View.VISIBLE);
                 time = intent.getIntExtra(GameEngine.TIME, 0);
