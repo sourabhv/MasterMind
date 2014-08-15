@@ -47,7 +47,7 @@ public class MastermindActivity extends Activity {
     OnClickListener onHotbarClick;
     OnClickListener onPegClick;
     OnClickListener onConfirmClick;
-    int elapsedTime;    
+    int elapsedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

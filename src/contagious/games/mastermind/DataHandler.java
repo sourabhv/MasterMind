@@ -15,52 +15,52 @@ import android.provider.BaseColumns;
 
 public class DataHandler {
 
-	public static abstract class Highscores implements BaseColumns {
-		public static final String TABLE_NAME = "highscores";
-		public static final String COLUMN_NAME = "name";
-		public static final String COLUMN_TIME = "time";
-		public static final String COLUMN_GUESSES = "guesses";
-	}
+    public static abstract class Highscores implements BaseColumns {
+        public static final String TABLE_NAME = "highscores";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_TIME = "time";
+        public static final String COLUMN_GUESSES = "guesses";
+    }
 
-	public class OpenHelper extends SQLiteOpenHelper {
-		public static final String DATABASE_NAME = "mastermind.db";
-		public static final int DATABASE_VERSION = 1;
-		public OpenHelper(Context context) {
-			super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		}
+    public class OpenHelper extends SQLiteOpenHelper {
+        public static final String DATABASE_NAME = "mastermind.db";
+        public static final int DATABASE_VERSION = 1;
+        public OpenHelper(Context context) {
+            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        }
 
-		@Override
-		public void onCreate(SQLiteDatabase db) {
+        @Override
+        public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE " + Highscores.TABLE_NAME + " (" +
                     Highscores._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     Highscores.COLUMN_NAME + " TEXT, " +
                     Highscores.COLUMN_TIME + " INTEGER, " +
                     Highscores.COLUMN_GUESSES + " INTEGER)");
-		}
+        }
 
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			db.execSQL("DROP TABLE IF EXISTS " + Highscores.TABLE_NAME);
-			onCreate(db);
-		}
-	}
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS " + Highscores.TABLE_NAME);
+            onCreate(db);
+        }
+    }
 
-	public volatile SQLiteDatabase db = null;
-	public static DataHandler dataHandler = null;
+    public volatile SQLiteDatabase db = null;
+    public static DataHandler dataHandler = null;
 
-	public DataHandler(Context context) {
-		db = (new OpenHelper(context.getApplicationContext())).getWritableDatabase();
-	}
+    public DataHandler(Context context) {
+        db = (new OpenHelper(context.getApplicationContext())).getWritableDatabase();
+    }
 
-	public static synchronized DataHandler getInstance(Context context) {
-		if (dataHandler == null) dataHandler = new DataHandler(context);
-		return dataHandler;
-	}
+    public static synchronized DataHandler getInstance(Context context) {
+        if (dataHandler == null) dataHandler = new DataHandler(context);
+        return dataHandler;
+    }
 
-	public long count() {
-		SQLiteStatement s = db.compileStatement("SELECT count(*) from " + Highscores.TABLE_NAME);
-		return (long) s.simpleQueryForLong();
-	}
+    public long count() {
+        SQLiteStatement s = db.compileStatement("SELECT count(*) from " + Highscores.TABLE_NAME);
+        return (long) s.simpleQueryForLong();
+    }
 
     public List<Map<String, Object>> selectAll() {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

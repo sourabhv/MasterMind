@@ -107,7 +107,7 @@ public class EndGameActivity extends Activity {
         }
     }
 
-	public void onSubmit(View view) {
+    public void onSubmit(View view) {
         if (name.length() > 0) {
             pMap = new HashMap<String, Object>();
             pMap.put(DataHandler.Highscores.COLUMN_NAME, name.getText().toString());

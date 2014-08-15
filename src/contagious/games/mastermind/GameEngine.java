@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class GameEngine {
 
-	public static final String ISHIGHSCORE = "contagious.games.mastermind.HIGHSCORE";
-	public static final String TIME = "contagious.games.mastermind.TIME";
-	public static final String GUESSES = "contagious.games.mastermind.GUESSES";
-	public static final String WIN = "contagious.games.mastermind.WIN";
-	public static final String TRUE = "TRUE";
-	public static final String FALSE = "FALSE";
+    public static final String ISHIGHSCORE = "contagious.games.mastermind.HIGHSCORE";
+    public static final String TIME = "contagious.games.mastermind.TIME";
+    public static final String GUESSES = "contagious.games.mastermind.GUESSES";
+    public static final String WIN = "contagious.games.mastermind.WIN";
+    public static final String TRUE = "TRUE";
+    public static final String FALSE = "FALSE";
 
-	public static boolean soundStatus;
+    public static boolean soundStatus;
     public static final int MAX_GUESSES = 10;
     public static final int COMBOLENGTH = 4;
 
@@ -63,21 +63,21 @@ public class GameEngine {
         return true;
     }
 
-	public boolean checkHighScore(List<Map<String, Object>> highscores, long timeElapsed, int guessesTaken) {
-		if (highscores.size() < 10)
-			return true;
-		int i;
-		for (i = 0; i < highscores.size(); i++) {
-			HashMap<String, Object> score = (HashMap<String, Object>) highscores.get(i);
-			int time = (Integer) score.get(DataHandler.Highscores.COLUMN_TIME);
-			int guesses = (Integer) score.get(DataHandler.Highscores.COLUMN_GUESSES);
-			if (timeElapsed < time || (timeElapsed == time && guessesTaken < guesses))
-				break;
-		}
+    public boolean checkHighScore(List<Map<String, Object>> highscores, long timeElapsed, int guessesTaken) {
+        if (highscores.size() < 10)
+            return true;
+        int i;
+        for (i = 0; i < highscores.size(); i++) {
+            HashMap<String, Object> score = (HashMap<String, Object>) highscores.get(i);
+            int time = (Integer) score.get(DataHandler.Highscores.COLUMN_TIME);
+            int guesses = (Integer) score.get(DataHandler.Highscores.COLUMN_GUESSES);
+            if (timeElapsed < time || (timeElapsed == time && guessesTaken < guesses))
+                break;
+        }
 
-		if (i == highscores.size())
-			return false;
-		return true;
-	}
+        if (i == highscores.size())
+            return false;
+        return true;
+    }
 
 }

@@ -52,7 +52,7 @@ public class HighScoreActivity extends Activity {
 
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         setContentView(R.layout.highscore);
-        
+
         TextView highscoreTitle = (TextView) findViewById(R.id.highscore_title);
         highscoreTitle.setTypeface(josefinSans);
 
