@@ -1,9 +1,15 @@
 package contagious.games.mastermind;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +30,9 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    SoundPool soundPool;
+    int mainClickID = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -32,10 +41,31 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        ImageButton view = (ImageButton) findViewById(R.id.settings_sound_toggle);
-        view.setImageResource(R.drawable.ic_sound_on);
-        view.setTag(R.drawable.ic_sound_on);
-        GameEngine.soundStatus = true;
+        // wake lock
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        // music stream and sound pool
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor mainClickDescriptor = assetManager.openFd("sounds/main_click.ogg");
+            mainClickID = soundPool.load(mainClickDescriptor, 1);
+
+        } catch (IOException e) {
+            // do nothing
+        }
+
+        if (GameEngine.soundStatus){
+            ImageButton view = (ImageButton) findViewById(R.id.settings_sound_toggle);
+            view.setImageResource(R.drawable.ic_sound_on);
+            view.setTag(R.drawable.ic_sound_on);
+        } else {
+            ImageButton view = (ImageButton) findViewById(R.id.settings_sound_toggle);
+            view.setImageResource(R.drawable.ic_sound_off);
+            view.setTag(R.drawable.ic_sound_off);
+        }
 
         Typeface josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         ((TextView) findViewById(R.id.settings_title)).setTypeface(josefinSans);
@@ -44,18 +74,20 @@ public class SettingsActivity extends Activity {
 
     public void soundToggleClick(View view) {
         if(((Integer)((ImageButton) view).getTag()) == R.drawable.ic_sound_on) {
+            GameEngine.soundStatus = false;
             ((ImageButton) view).setImageResource(R.drawable.ic_sound_off);
             ((ImageButton) view).setTag(R.drawable.ic_sound_off);
-            GameEngine.soundStatus = false;
         }
         else {
+            GameEngine.soundStatus = true;
+            play(mainClickID);
             ((ImageButton) view).setImageResource(R.drawable.ic_sound_on);
             ((ImageButton) view).setTag(R.drawable.ic_sound_on);
-            GameEngine.soundStatus = true;
         }
     }
 
     public void highscoreResetClick(final View view) {
+        play(mainClickID);
         new AlertDialog.Builder(this)
             .setTitle("Clear Highscores")
             .setMessage("Are you sure you want to clear highscores?")
@@ -76,4 +108,8 @@ public class SettingsActivity extends Activity {
             .show();
     }
 
+    private void play(int id) {
+        if (id != -1 && GameEngine.soundStatus)
+            soundPool.play(id, 1.0f, 1.0f, 0, 0, 1);
+    }
 }

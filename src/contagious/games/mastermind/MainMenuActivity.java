@@ -1,13 +1,22 @@
 package contagious.games.mastermind;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class MainMenuActivity extends Activity {
+
+    SoundPool soundPool;
+    int mainClickID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,21 +25,44 @@ public class MainMenuActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        // wake lock
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        // music stream and sound pool
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor mainClickDescriptor = assetManager.openFd("sounds/main_click.ogg");
+            mainClickID = soundPool.load(mainClickDescriptor, 1);
+        } catch (IOException e) {
+            // do nothing
+        }
     }
 
     public void onPlayClick(View view) {
+        if (mainClickID != -1 && GameEngine.soundStatus)
+            soundPool.play(mainClickID, 1.0f, 1.0f, 0, 0, 1);
         startActivity(new Intent(this, MastermindActivity.class));
     }
 
     public void onInstnClick(View view) {
+        if (mainClickID != -1 && GameEngine.soundStatus)
+            soundPool.play(mainClickID, 1.0f, 1.0f, 0, 0, 1);
         startActivity(new Intent(this, InstructionsActivity.class));
     }
 
     public void onHighScoreClick(View view) {
+        if (mainClickID != -1 && GameEngine.soundStatus)
+            soundPool.play(mainClickID, 1.0f, 1.0f, 0, 0, 1);
         startActivity(new Intent(this, HighScoreActivity.class));
     }
 
     public void onSettingsClick(View view) {
+        if (mainClickID != -1 && GameEngine.soundStatus)
+            soundPool.play(mainClickID, 1.0f, 1.0f, 0, 0, 1);
         startActivity(new Intent(this, SettingsActivity.class));
     }
 

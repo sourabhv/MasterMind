@@ -13,7 +13,7 @@ public class GameEngine {
     public static final String TRUE = "TRUE";
     public static final String FALSE = "FALSE";
 
-    public static boolean soundStatus;
+    public static boolean soundStatus = true;
     public static final int MAX_GUESSES = 10;
     public static final int COMBOLENGTH = 4;
 

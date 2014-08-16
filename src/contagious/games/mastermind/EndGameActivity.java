@@ -1,12 +1,17 @@
 package contagious.games.mastermind;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +60,9 @@ public class EndGameActivity extends Activity {
         }
     }
 
+    SoundPool soundPool;
+    int mainClickID = -1, tadaID = -1, wubWubID = -1;
+
     Typeface josefinSans;
     TextView message;
     TextView submessage;
@@ -73,6 +81,25 @@ public class EndGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.endgame);
 
+        // wake lock
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        // music stream and sound pool
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor mainClickDescriptor = assetManager.openFd("sounds/main_click.ogg");
+            AssetFileDescriptor tadaDescriptor = assetManager.openFd("sounds/tada.ogg");
+            AssetFileDescriptor wubWubDescriptor = assetManager.openFd("sounds/wubwub.ogg");
+            mainClickID = soundPool.load(mainClickDescriptor, 1);
+            tadaID = soundPool.load(tadaDescriptor, 1);
+            wubWubID = soundPool.load(wubWubDescriptor, 1);
+        } catch (IOException e) {
+            // do nothing
+        }
+
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");
         message = (TextView) findViewById(R.id.endgame_message);
         submessage = (TextView) findViewById(R.id.endgame_submessage);
@@ -90,6 +117,7 @@ public class EndGameActivity extends Activity {
         String win = intent.getStringExtra(GameEngine.WIN);
 
         if (win.equals(GameEngine.TRUE)) {
+            play(tadaID);
             message.setText(R.string.youwin);
             String ishighscore = intent.getStringExtra(GameEngine.ISHIGHSCORE);
             if (ishighscore.equals(GameEngine.TRUE)) {
@@ -102,13 +130,16 @@ public class EndGameActivity extends Activity {
                 back.setVisibility(View.VISIBLE);
             }
         } else {
+            play(wubWubID);
             message.setText(R.string.youlose);
             back.setVisibility(View.VISIBLE);
         }
+
     }
 
     public void onSubmit(View view) {
         if (name.length() > 0) {
+            play(mainClickID);
             pMap = new HashMap<String, Object>();
             pMap.put(DataHandler.Highscores.COLUMN_NAME, name.getText().toString());
             pMap.put(DataHandler.Highscores.COLUMN_TIME, time);
@@ -119,7 +150,12 @@ public class EndGameActivity extends Activity {
     }
 
     public void onBack(View view) {
+        play(mainClickID);
         finish();
     }
 
+    private void play(int id) {
+        if (id != -1 && GameEngine.soundStatus)
+            soundPool.play(id, 1.0f, 1.0f, 0, 0, 1);
+    }
 }

@@ -1,12 +1,17 @@
 package contagious.games.mastermind;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -49,6 +54,10 @@ public class MastermindActivity extends Activity {
     OnClickListener onConfirmClick;
     int elapsedTime;
 
+    SoundPool soundPool;
+    int mainClickID = -1;
+    int pegClickID = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -66,6 +75,24 @@ public class MastermindActivity extends Activity {
         gameEngine = new GameEngine();
         elapsedTime = -1;
 
+        // wake lock
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        // music stream and sound pool
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor mainClickDescriptor = assetManager.openFd("sounds/main_click.ogg");
+            AssetFileDescriptor pegClickDescriptor = assetManager.openFd("sounds/peg_click.ogg");
+            mainClickID = soundPool.load(mainClickDescriptor, 1);
+            pegClickID = soundPool.load(pegClickDescriptor, 1);
+
+        } catch (IOException e) {
+            // do nothing
+        }
+
         /* --- listeners --- */
 
         timer.setOnChronometerTickListener(new OnChronometerTickListener() {
@@ -78,6 +105,9 @@ public class MastermindActivity extends Activity {
         onHotbarClick = new OnClickListener() {
             @Override
             public void onClick(View view) {
+                // play sound
+                play(mainClickID);
+
                 Peg peg = (Peg) view;
                 if (peg.drawableID() >= Peg.PEGSCOUNT)
                     peg.setDrawableID(peg.drawableID() - Peg.PEGSCOUNT);
@@ -102,6 +132,9 @@ public class MastermindActivity extends Activity {
                 int playlevel = Integer.parseInt(peg.getTag().toString().substring(8, 9));
                 if (playlevel != gameEngine.guessCount)
                     return;
+
+                // play sound
+                play(pegClickID);
 
                 for (int i = 0; i < len; i++) {
                     Peg cPeg = (Peg) hotbar.getChildAt(i);
@@ -136,6 +169,9 @@ public class MastermindActivity extends Activity {
                     if (peg.drawableID() == Peg.NULL)
                         return;
                 }
+
+                // play sound
+                play(mainClickID);
 
                 int[] flagCombo = gameEngine.getFlagCombo(pegCombo);
                 boolean win = gameEngine.getWinStatus(flagCombo);
@@ -273,7 +309,8 @@ public class MastermindActivity extends Activity {
         }
     }
 
-    public void onConfirmClick(View view) {
+    private void play(int id) {
+        if (id != -1 && GameEngine.soundStatus)
+            soundPool.play(id, 1.0f, 1.0f, 0, 0, 1);
     }
-
 }
