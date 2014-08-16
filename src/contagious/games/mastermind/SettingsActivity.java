@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
@@ -14,6 +13,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -78,7 +78,7 @@ public class SettingsActivity extends Activity {
 
     public void soundToggleClick(View view) {
         Integer tag = (Integer)((ImageButton) view).getTag();
-        SharedPreferences sharedPref = getSharedPreferences(GameEngine.PREFFILENAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         if(tag == R.drawable.ic_sound_on) {
