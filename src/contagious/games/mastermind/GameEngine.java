@@ -6,12 +6,15 @@ import java.util.Map;
 
 public class GameEngine {
 
+    public static final String PREFFILENAME = "contagious.games.mastermind.PREFERENCES";
+    public static final String PREFSOUND = "contagious.games.mastermind.SOUND";
     public static final String ISHIGHSCORE = "contagious.games.mastermind.HIGHSCORE";
     public static final String TIME = "contagious.games.mastermind.TIME";
     public static final String GUESSES = "contagious.games.mastermind.GUESSES";
     public static final String WIN = "contagious.games.mastermind.WIN";
     public static final String TRUE = "TRUE";
     public static final String FALSE = "FALSE";
+    public static final String NONE = "NONE";
 
     public static boolean soundStatus = true;
     public static final int MAX_GUESSES = 10;

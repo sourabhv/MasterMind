@@ -3,7 +3,9 @@ package contagious.games.mastermind;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -25,6 +27,20 @@ public class MainMenuActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        SharedPreferences sharedPref = getSharedPreferences(GameEngine.PREFFILENAME, Context.MODE_PRIVATE);
+        String soundPref = sharedPref.getString(GameEngine.PREFSOUND, GameEngine.NONE);
+
+        if (soundPref.equals(GameEngine.NONE)) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(GameEngine.PREFSOUND, GameEngine.TRUE);
+            GameEngine.soundStatus = true;
+            editor.commit();
+        }
+        else if (soundPref.equals(GameEngine.TRUE))
+            GameEngine.soundStatus = true;
+        else if (soundPref.equals(GameEngine.FALSE))
+            GameEngine.soundStatus = false;
 
         // wake lock
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

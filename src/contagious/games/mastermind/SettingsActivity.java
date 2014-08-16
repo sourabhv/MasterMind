@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -41,6 +43,8 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
+
+
         // wake lock
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -73,17 +77,24 @@ public class SettingsActivity extends Activity {
     }
 
     public void soundToggleClick(View view) {
-        if(((Integer)((ImageButton) view).getTag()) == R.drawable.ic_sound_on) {
+        Integer tag = (Integer)((ImageButton) view).getTag();
+        SharedPreferences sharedPref = getSharedPreferences(GameEngine.PREFFILENAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        if(tag == R.drawable.ic_sound_on) {
             GameEngine.soundStatus = false;
             ((ImageButton) view).setImageResource(R.drawable.ic_sound_off);
             ((ImageButton) view).setTag(R.drawable.ic_sound_off);
-        }
+            editor.putString(GameEngine.PREFSOUND, GameEngine.FALSE);        }
         else {
             GameEngine.soundStatus = true;
             play(mainClickID);
             ((ImageButton) view).setImageResource(R.drawable.ic_sound_on);
             ((ImageButton) view).setTag(R.drawable.ic_sound_on);
+            editor.putString(GameEngine.PREFSOUND, GameEngine.TRUE);
         }
+
+        editor.commit();
     }
 
     public void highscoreResetClick(final View view) {

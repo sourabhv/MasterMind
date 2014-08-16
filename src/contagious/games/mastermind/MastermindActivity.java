@@ -133,9 +133,6 @@ public class MastermindActivity extends Activity {
                 if (playlevel != gameEngine.guessCount)
                     return;
 
-                // play sound
-                play(pegClickID);
-
                 for (int i = 0; i < len; i++) {
                     Peg cPeg = (Peg) hotbar.getChildAt(i);
                     if (cPeg.drawableID() >= Peg.PEGSCOUNT) {
@@ -146,6 +143,10 @@ public class MastermindActivity extends Activity {
 
                 if (active_peg != Peg.NULL)
                     active_peg -= Peg.PEGSCOUNT;
+
+                if (active_peg != peg.drawableID())
+                    // play sound
+                    play(pegClickID);
 
                 peg.setDrawableID(active_peg);
 
