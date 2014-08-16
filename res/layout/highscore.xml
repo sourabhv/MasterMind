@@ -4,23 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background" >
-    
-	<TextView android:id="@+id/highscore_title"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:padding="10sp"
-	    android:layout_marginTop="20sp"
-	    android:layout_marginBottom="20sp"
-	    android:text="@string/highscores"
-	    android:textColor="@android:color/white"
-	    android:textSize="30sp"
-	    android:gravity="center" />
 
-	<TableLayout android:id="@+id/highscore_table"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:stretchColumns="0,1,2,3" >
+    <TextView android:id="@+id/highscore_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        android:text="@string/highscores"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:gravity="center" />
 
-	</TableLayout>
+    <TableLayout android:id="@+id/highscore_table"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2,3" >
+
+    </TableLayout>
 
 </LinearLayout>
