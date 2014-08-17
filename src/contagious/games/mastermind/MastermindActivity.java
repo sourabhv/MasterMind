@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +46,8 @@ public class MastermindActivity extends Activity {
         }
     }
 
+    private AdView adView;
+
     Typeface josefinSans;
     Chronometer timer;
     GameEngine gameEngine;
@@ -65,6 +70,12 @@ public class MastermindActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mastermind);
+
+        adView = (AdView) findViewById(R.id.mm_adView);
+        AdRequest adRequest = new AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .build();
+        adView.loadAd(adRequest);
 
         new GetHighscores().execute();
         josefinSans = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-SemiBold.ttf");

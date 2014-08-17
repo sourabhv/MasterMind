@@ -2,6 +2,9 @@ package contagious.games.mastermind;
 
 import java.io.IOException;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +20,7 @@ import android.view.WindowManager;
 
 public class MainMenuActivity extends Activity {
 
+    private AdView adView;
     SoundPool soundPool;
     int mainClickID = -1;
 
@@ -27,6 +31,12 @@ public class MainMenuActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        adView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .build();
+        adView.loadAd(adRequest);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String soundPref = sharedPref.getString(GameEngine.PREFSOUND, GameEngine.NONE);

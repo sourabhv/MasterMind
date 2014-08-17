@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -8,24 +9,18 @@
     <LinearLayout android:id="@+id/ad_holder"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@android:color/transparent"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
 
-        <!-- Displayed while ad is loading -->
-        <TextView android:id="@+id/ad_message"
-            android:text="@string/ad_loading"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:gravity="center" />
-
-        <!--
-        <com.google.ads.AdView android:id="@+id/ad_view"
+        <com.google.android.gms.ads.AdView android:id="@+id/adView"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true" />
-        -->
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-9039403333783588/4993472756"
+            ads:adSize="BANNER" />
+
+
     </LinearLayout>
 
     <ImageView android:id="@+id/menu_title"

@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background" >
 
+    <LinearLayout android:id="@+id/mm_ad_holder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+
+        <com.google.android.gms.ads.AdView android:id="@+id/mm_adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-9039403333783588/4993472756"
+            ads:adSize="BANNER" />
+
+    </LinearLayout>
+
     <Chronometer android:id="@+id/timer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/mm_ad_holder"
         android:gravity="center"
         android:padding="2dp"
         android:textSize="20sp"
