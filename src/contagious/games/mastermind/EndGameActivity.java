@@ -130,6 +130,8 @@ public class EndGameActivity extends Activity {
                 back.setVisibility(View.VISIBLE);
             }
         } else {
+        	View root = (View) message.getParent();
+        	root.setBackgroundResource(R.drawable.background_red);
             play(wubWubID);
             message.setText(R.string.youlose);
             back.setVisibility(View.VISIBLE);

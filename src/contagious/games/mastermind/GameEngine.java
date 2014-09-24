@@ -54,6 +54,7 @@ public class GameEngine {
                         combinationReady[j] = false;
                         flagCombo[flagComboCounter] = Flag.RED;
                         flagComboCounter++;
+                        break;
                     }
 
         return flagCombo;

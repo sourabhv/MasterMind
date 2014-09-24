@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -27,6 +27,9 @@ import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MastermindActivity extends Activity {
 
@@ -57,6 +60,7 @@ public class MastermindActivity extends Activity {
     OnClickListener onHotbarClick;
     OnClickListener onPegClick;
     OnClickListener onConfirmClick;
+    Drawable backgroundRed;
     int elapsedTime;
 
     SoundPool soundPool;
@@ -84,6 +88,7 @@ public class MastermindActivity extends Activity {
         hotbar = (RelativeLayout) findViewById(R.id.hotbar);
         playarea = (LinearLayout) findViewById(R.id.playarea);
         gameEngine = new GameEngine();
+        backgroundRed = getResources().getDrawable(R.drawable.background_red);
         elapsedTime = -1;
 
         // wake lock
@@ -211,6 +216,11 @@ public class MastermindActivity extends Activity {
                     if (gameEngine.guessCount < 9) {
                         gameEngine.guessCount++;
 
+                        if (gameEngine.guessCount == 7) {
+                            View root = (View) timer.getParent();
+                            setBg(root, backgroundRed);
+                        }
+
                         for (int i = 0; i < 4; i++) {
                             Flag flag = (Flag) parent.getChildAt(i);
                             flag.setDrawableID(flagCombo[i]);
@@ -324,5 +334,16 @@ public class MastermindActivity extends Activity {
     private void play(int id) {
         if (id != -1 && GameEngine.soundStatus)
             soundPool.play(id, 1.0f, 1.0f, 0, 0, 1);
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	@SuppressWarnings("deprecation")
+    private static void setBg(View view, Drawable drawable) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackgroundDrawable(drawable);
+        } else {
+            view.setBackground(drawable);
+        }
     }
 }
