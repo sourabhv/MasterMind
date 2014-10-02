@@ -43,6 +43,7 @@ public class GameEngine {
                 combinationReady[i] = false;
                 flagCombo[flagComboCounter] = Flag.WHITE;
                 flagComboCounter++;
+                break;
             }
         }
 
