@@ -33,13 +33,6 @@
             android:gravity="center"
             android:textColor="@android:color/white" />
 
-        <ImageView
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/instructions1"
-            android:contentDescription="@string/instructions" />
-
         <TextView
             android:id="@+id/ins2"
             android:layout_width="fill_parent"
@@ -57,7 +50,7 @@
             android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/instructions2"
+            android:src="@drawable/instructions1"
             android:contentDescription="@string/instructions" />
 
         <TextView
@@ -68,6 +61,26 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/text3"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/instructions2"
+            android:contentDescription="@string/instructions" />
+
+        <TextView
+            android:id="@+id/ins4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/text4"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:gravity="center"

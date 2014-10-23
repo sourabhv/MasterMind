@@ -23,5 +23,6 @@ public class InstructionsActivity extends Activity {
         ((TextView) findViewById(R.id.ins1)).setTypeface(josefinSans);
         ((TextView) findViewById(R.id.ins2)).setTypeface(josefinSans);
         ((TextView) findViewById(R.id.ins3)).setTypeface(josefinSans);
+        ((TextView) findViewById(R.id.ins4)).setTypeface(josefinSans);
     }
 }
