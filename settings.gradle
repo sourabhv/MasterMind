@@ -1,0 +1,2 @@
+include ':MasterMind'
+include ':appcompat_v7'
